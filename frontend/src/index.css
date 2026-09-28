@@ -1,0 +1,467 @@
+:root {
+  --agri-green: #2e7d32;
+  --agri-green-dark: #1b5e20;
+  --agri-green-light: #e8f5e9;
+  --agri-amber: #f9a825;
+  --agri-surface: #f6f8f5;
+}
+
+body {
+  margin: 0;
+  background-color: var(--agri-surface);
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #263238;
+}
+
+/* Reusable agricultural-theme button */
+.btn-agri {
+  background-color: var(--agri-green);
+  border-color: var(--agri-green);
+  color: #fff;
+  font-weight: 500;
+}
+.btn-agri:hover,
+.btn-agri:focus {
+  background-color: var(--agri-green-dark);
+  border-color: var(--agri-green-dark);
+  color: #fff;
+}
+
+.text-agri { color: var(--agri-green) !important; }
+.bg-agri { background-color: var(--agri-green) !important; }
+.bg-agri-light { background-color: var(--agri-green-light) !important; }
+
+/* Split-screen layout used by the auth pages */
+.auth-wrapper { min-height: 100vh; }
+
+.auth-brand-panel {
+  background: linear-gradient(135deg, var(--agri-green) 0%, var(--agri-green-dark) 100%);
+  color: #fff;
+}
+
+.auth-card {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--agri-green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.15);
+}
+/* =========================================================================
+   APPLICATION SHELL
+   ========================================================================= */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--agri-green-dark) 0%, var(--agri-green) 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1045;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  overflow-y: auto;
+}
+
+.app-sidebar.is-open {
+  transform: translateX(0);
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1040;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-avatar,
+.navbar-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sidebar-avatar {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.navbar-avatar {
+  background: var(--agri-green);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav {
+  padding: 0.75rem 0.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.sidebar-link.is-active {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar-link.is-pending {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.sidebar-link.is-pending:hover {
+  background: transparent;
+}
+
+.sidebar-icon {
+  width: 22px;
+  text-align: center;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-navbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.app-content {
+  padding: 1.5rem 1.25rem 3rem;
+  flex: 1;
+}
+
+@media (min-width: 992px) {
+  .app-sidebar {
+    position: sticky;
+    transform: none;
+    height: 100vh;
+  }
+  .app-content {
+    padding: 2rem 2rem 3rem;
+  }
+}
+
+/* =========================================================================
+   CARDS
+   ========================================================================= */
+.stat-card {
+  border-radius: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.stat-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.token-display {
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--agri-green-dark);
+}
+
+.min-w-0 {
+  min-width: 0;
+}
+/* =========================================================================
+   MODAL
+   ========================================================================= */
+.app-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1090;
+}
+
+.app-modal-dialog {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.app-modal-dialog.modal-sm { max-width: 400px; }
+.app-modal-dialog.modal-lg { max-width: 720px; }
+
+.app-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+}
+
+.app-modal-body {
+  padding: 1.5rem;
+}
+
+/* =========================================================================
+   TABLES
+   ========================================================================= */
+.app-table thead th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6c757d;
+  font-weight: 700;
+  border-bottom-width: 1px;
+  white-space: nowrap;
+}
+
+.app-table td {
+  vertical-align: middle;
+}
+
+.search-input-wrapper {
+  position: relative;
+  max-width: 320px;
+}
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+.search-input-wrapper input {
+  padding-left: 2.25rem;
+}
+/* =========================================================================
+   QUEUE CONTROL
+   ========================================================================= */
+.current-token-panel {
+  background: linear-gradient(135deg, var(--agri-green) 0%, var(--agri-green-dark) 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.current-token-value {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.token-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background: #f3f6f2;
+  border: 1px solid #e4e9e2;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+
+}
+
+.token-pill-number {
+  font-weight: 700;
+  color: var(--agri-green-dark);
+  min-width: 44px;
+}
+
+.token-pill-name {
+  color: #555;
+  font-size: 0.9rem;
+  flex: 1;
+  text-align: right;
+}
+
+.token-pill-serving {
+  background: #fff8e1;
+  border-color: #ffe082;
+}
+.token-pill-serving .token-pill-number {
+  color: #b78103;
+}
+/* =========================================================================
+   CONNECTION STATUS
+   ========================================================================= */
+.connection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.connection-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.connection-dot.is-pulsing {
+  animation: connection-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes connection-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(46, 125, 50, 0); }
+}
+/* =========================================================================
+   RESPONSIVE & MOBILE FIXES
+   ========================================================================= */
+
+/* Prevent iOS Safari from zooming in when a form input is focused —
+   happens automatically if any input's font-size is below 16px. */
+input, select, textarea {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  input, select, textarea {
+    font-size: 1rem; /* restore Bootstrap's normal sizing on larger screens */
+  }
+}
+
+/* Ensure tables never force the whole page to scroll horizontally —
+   only the table itself scrolls, keeping the sidebar/navbar fixed. */
+.table-responsive {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Stat cards: avoid text overflow on narrow screens with long values
+   (e.g. large currency amounts). */
+.stat-value {
+  word-break: break-word;
+}
+
+/* Modal on very small screens: use nearly the full width with margin. */
+@media (max-width: 400px) {
+  .app-modal-dialog {
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+/* Buttons inside card-body quick-action lists: ensure long labels wrap
+   instead of overflowing on small tablets. */
+.btn.text-start {
+  white-space: normal;
+}
+
+/* Sidebar: ensure it's scrollable independently if nav items exceed
+   viewport height on short mobile screens in landscape. */
+.app-sidebar {
+  max-height: 100vh;
+}
+
+/* Focus visibility: default outline removal from some browsers'
+   button/link resets shouldn't remove keyboard focus indication. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--agri-green);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--agri-green-dark);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 8px 8px;
+  z-index: 2100;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
